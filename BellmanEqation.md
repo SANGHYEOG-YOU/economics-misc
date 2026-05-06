@@ -160,7 +160,7 @@ plot(k_grid, optimal_k_prime, type='l', main='Policy Function', xlab='Capital (k
 
 # 거시경제학의 1계 조건: 오일러 방정식 (Euler Equation)
 
-동태 최적화(Dynamic Optimization) 문제에서 벨만 방정식이 전체 가치(Value)를 극대화하는 **전역적(Global)** 관점의 식이라면, 오일러 방정식은 매 순간 경제 주체가 선택해야 하는 **한계적(Marginal)** 균형을 나타내는 **1계 조건(First-Order Condition, FOC)**입니다.
+동태 최적화(Dynamic Optimization) 문제에서 벨만 방정식이 전체 가치(Value)를 극대화하는 **전역적(Global)** 관점의 식이라면, 오일러 방정식은 매 순간 경제 주체가 선택해야 하는 **한계적(Marginal)** 균형을 나타내는 **1계 조건(First-Order Condition, FOC) **입니다.
 
 ---
 
@@ -175,9 +175,9 @@ $$u'(c_t) = \beta \mathbb{E}_t \left\lbrace u'(c_{t+1}) \cdot f'(k_{t+1}) \right
 $$u'(c_t) = \beta \mathbb{E}_t \left\lbrace u'(c_{t+1}) (1 + r_{t+1}) \right\rbrace$$
 
 ### 🔹 구성 요소
-*   *u'(c_t)*: 현재 소비의 한계 효용 (오늘 소비를 1단위 줄일 때 발생하는 효용의 감소분)
+*   *$u'(c_t)$*: 현재 소비의 한계 효용 (오늘 소비를 1단위 줄일 때 발생하는 효용의 감소분)
 *   *β* (Beta): 할인 인자 (시간 선호, 인내심)
-*   *E_t*: 미래의 불확실성을 고려한 현재 시점(*t*)의 기대치(Expectation)
+*   *$E_t$*: 미래의 불확실성을 고려한 현재 시점(*t*)의 기대치(Expectation)
 *   *(1 + r)* 또는 *f'(k)*: 저축(투자)을 통해 내일 얻게 되는 총수익률 (이자율 또는 자본의 한계 생산성)
 
 ### 🔹 경제학적 직관 (기간 간 상충관계)
@@ -198,7 +198,7 @@ $$1 = \mathbb{E}_t \left\lbrace \beta \frac{u'(c_{t+1})}{u'(c_t)} R_{t+1} \right
 $$M_{t+1} = \beta \frac{u'(c_{t+1})}{u'(c_t)}$$
 
 *   **SDF의 의미:** 미래의 한계 효용이 현재보다 얼마나 높은지(또는 낮은지)를 나타내는 비율입니다. 
-*   **리스크 프리미엄(Risk Premium)과의 연결:** 주식 시장이 폭락하여 모두의 소비가 줄어들 때(즉, 미래의 한계 효용 *u'(c)*가 급증할 때) 높은 수익을 내주는 자산은 매우 가치 있는 헤지(Hedge) 수단이 되며, 반대의 경우 리스크 프리미엄을 요구하게 됩니다. 이 원리(CCAPM)가 현대 리스크 관리 및 VaR(Value-at-Risk) 모형 등 꼬리 위험(Tail Risk) 분석의 이론적 토대가 됩니다.
+*   **리스크 프리미엄(Risk Premium)과의 연결:** 주식 시장이 폭락하여 모두의 소비가 줄어들 때(즉, 미래의 한계 효용 *$u'(c)$*가 급증할 때) 높은 수익을 내주는 자산은 매우 가치 있는 헤지(Hedge) 수단이 되며, 반대의 경우 리스크 프리미엄을 요구하게 됩니다. 이 원리(CCAPM)가 현대 리스크 관리 및 VaR(Value-at-Risk) 모형 등 꼬리 위험(Tail Risk) 분석의 이론적 토대가 됩니다.
 
 ---
 
