@@ -46,7 +46,13 @@ $$\sigma_p^2 = \sum_{i=1}^{n} w_i^2 \sigma_i^2 + \sum_{i=1}^{n} \sum_{j \neq i}^
 ## 5. 최적 포트폴리오 선정
 - **Minimum Variance Portfolio (MVP)**: 리스크를 최소화하는 지점입니다.
 - **Sharpe Ratio Maximize**: 무위험 자산이 존재할 때, 자산 배분의 효율성을 나타내는 샤프 지수($\frac{E(R_p) - R_f}{\sigma_p}$)가 최대가 되는 접점 포트폴리오(Tangency Portfolio)를 찾습니다.
-
+ - **Sharpe Ratio (샤프 지수):** **'위험 1단위당 얻을 수 있는 초과 수익률'** 을 의미합니다. 서로 다른 리스크를 가진 포트폴리오들의 성과를 동일한 잣대로 비교(Risk-adjusted Return)할 때 사용되는 가장 대표적인 척도입니다.
+ - **수식 체계 (Formula)**
+   $$S_p = \frac{E(R_p) - R_f}{\sigma_p}$$
+    $E(R_p)$: 포트폴리오의 기대수익률 (Expected Return)
+    $R_f$: 무위험 이자율 (Risk-Free Rate)
+    $\sigma_p$: 포트폴리오 수익률의 표준편차 (총 위험, Total Risk)
+    $E(R_p) - R_f$: 무위험 자산 대비 얼마나 추가 수익을 냈는지를 나타내는 **위험 프리미엄(Risk Premium)**
 ## 6. 한계점 및 확장
 - 사실 현대포트폴리오이론(MPT)은 이론적 기초로서 가치가 높지만, 실제 금융 시장에서는 다음과 같은 이유로 한계를 가져 사실상 안쓰입니다.
 - **정규분포 가정의 맹점:** 실제 금융 데이터는 **Fat-tail(두꺼운 꼬리)** 나 **비정규성(Non-normality)** 을 가지는 분포를 보이는 경우가 많아, VaR(Value at Risk)등을 통한 정교한 리스크 관리나 비모수(non-parametric)등의 방법들이 사용됩니다.
