@@ -1,1 +1,3 @@
-# economics-misc
+# Economics & Data Archive
+
+> 경제학 이론, 계량경제학, 그리고 데이터를 다루며 배운 것들을 가볍게 끄적이고 기록해 두는 개인 저장소입니다.
