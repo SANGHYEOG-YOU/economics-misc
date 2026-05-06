@@ -154,6 +154,7 @@ optimal_k_prime <- k_grid[policy_idx]
 plot(k_grid, final_value_function, type='l', main='Value Function', xlab='Capital (k)', ylab='V(k)')
 plot(k_grid, optimal_k_prime, type='l', main='Policy Function', xlab='Capital (k)', ylab='Optimal Next Capital (k\')')
 
+```
 
 ---
 
@@ -211,3 +212,4 @@ $$M_{t+1} = \beta \frac{u'(c_{t+1})}{u'(c_t)}$$
 | **장단점** | 비연속적/비볼록한 문제도 풀 수 있으나 차원의 저주에 취약 | 차원의 저주를 피하기 용이하며 계산 속도가 압도적으로 빠름 |
 
 결론적으로, 거시/금융 시계열 데이터 분석 시 우리가 관측하는 데이터(소비, 이자율, 자산 가격 등)의 움직임은 경제 주체들이 보이지 않는 곳에서 이 **오일러 방정식을 만족시키며 행동한 결과물**이라고 할 수 있습니다.
+
