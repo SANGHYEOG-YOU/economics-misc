@@ -150,6 +150,6 @@ for (iter in 1:max_iter) {
 final_value_function <- V_new
 optimal_k_prime <- k_grid[policy_idx]
 
-# 간단한 시각화 (선택 사항)
-# plot(k_grid, final_value_function, type='l', main='Value Function', xlab='Capital (k)', ylab='V(k)')
-# plot(k_grid, optimal_k_prime, type='l', main='Policy Function', xlab='Capital (k)', ylab='Optimal Next Capital (k\')')
+# 간단한 시각화
+plot(k_grid, final_value_function, type='l', main='Value Function', xlab='Capital (k)', ylab='V(k)')
+plot(k_grid, optimal_k_prime, type='l', main='Policy Function', xlab='Capital (k)', ylab='Optimal Next Capital (k\')')
