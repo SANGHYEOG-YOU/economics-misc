@@ -6,7 +6,7 @@
 
 표준적인 자본 축적(또는 소비-저축) 모델에서 경제 주체(가계)의 평생 효용 극대화 문제는 다음과 같은 벨만 방정식으로 정의된다.
 
-$$V(k_t) = \max_{c_t} \left\{ u(c_t) + \beta \mathbb{E}_t [V(k_{t+1})] \right\}$$
+$$V(k_t) = \max_{c_t} \left\lbrace u(c_t) + \beta \mathbb{E}_t [V(k_{t+1})] \right\rbrace$$
 
 ### 🔹 제약 조건 (상태 전이식)
 $$k_{t+1} = f(k_t) - c_t$$
