@@ -23,7 +23,9 @@ $$E(R_p) = \sum_{i=1}^{n} w_i E(R_i)$$
 
 ### 포트폴리오 분산 (Risk)
 $$\sigma_p^2 = \sum_{i=1}^{n} \sum_{j=1}^{n} w_i w_j \sigma_i \sigma_j \rho_{ij}$$
+
 **참고**: $\rho_{ij}$는 자산 $i$와 $j$ 사이의 상관계수를 의미합니다.
+
 $i \neq j$인 경우를 분리하여 표현하면, 포트폴리오 리스크의 구성을 더욱 직관적으로 이해할 수 있습니다.
 
 $$\sigma_p^2 = \sum_{i=1}^{n} w_i^2 \sigma_i^2 + \sum_{i=1}^{n} \sum_{j \neq i}^{n} w_i w_j \sigma_i \sigma_j \rho_{ij}$$
