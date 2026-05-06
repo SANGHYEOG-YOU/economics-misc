@@ -1,0 +1,155 @@
+# 거시경제학의 미시적 기초: 벨만 방정식 (Bellman Equation)
+
+동태 거시경제학(Dynamic Macroeconomics)에서 **벨만 방정식(Bellman Equation)**은 무한한 시계(Infinite-Horizon)에 걸친 복잡한 최적화 문제를 '현재(Today)'와 '미래(Tomorrow)'라는 단 두 시점의 재귀적(Recursive) 관계로 압축하는 핵심 수학적 도구다.
+
+## 1. 벨만 방정식의 기본 구조
+
+표준적인 자본 축적(또는 소비-저축) 모델에서 경제 주체(가계)의 평생 효용 극대화 문제는 다음과 같은 벨만 방정식으로 정의된다.
+
+$$V(k_t) = \max_{c_t} \left\lbrace u(c_t) + \beta \mathbb{E}_t [V(k_{t+1})] \right\rbrace$$
+
+### 🔹 제약 조건 (상태 전이식)
+$$k_{t+1} = f(k_t) - c_t$$
+
+### 🔹 구성 요소 정의
+*   **상태 변수 (State Variable, $k_t$):** 의사결정의 기준이 되는 현재의 조건 (예: 현재 보유한 자본량)
+*   **통제 변수 (Control Variable, $c_t$):** 주어진 상태에서 경제 주체가 선택하는 행동 (예: 현재의 소비량)
+*   **가치 함수 (Value Function, $$V(k_t)$$):** 현재 상태 $k_t$에서 출발하여, 미래 영원히 최선의 선택을 했을 때 얻을 수 있는 **총 효용의 현재 가치**
+*   **할인 인자 (Discount Factor, $\beta$):** 미래의 가치를 현재 가치로 환산하는 비율 (인내심, $0 < \beta < 1$)
+*   **기대 연산자 ($\mathbb{E}_t$):** 미래의 불확실성(예: 생산성 충격)을 반영
+
+---
+
+## 2. 경제학적 함의
+
+### ① 최적성의 원리 (Principle of Optimality)
+리처드 벨만(Richard Bellman)이 제안한 이 원리에 따르면, 전체 시계열의 최적 경로는 **매 시점마다의 부분적 최적화**로 나눌 수 있습니다. 
+즉, "오늘 최선의 소비($c_t$)를 선택하고 나면, 내일 도달하는 새로운 자본 상태($k_{t+1}$)에서도 다시 그 시점의 최선의 선택을 할 것"이라는 논리적 기반을 제공합니다.
+
+### ② 기간 간 상충관계 (Intertemporal Trade-off)
+벨만 방정식은 **오늘의 쾌락**과 **미래의 풍요** 사이의 균형을 수식화합니다.
+*   현재 소비($c_t$) 증가 $\rightarrow$ 현재 효용 $u(c_t)$ 증가
+*   현재 저축 감소 $\rightarrow$ 내일의 자본($k_{t+1}$) 감소 $\rightarrow$ 미래 가치 $V(k_{t+1})$ 감소
+
+이 두 효과의 한계 편익과 한계 비용이 일치하는 지점에서 최적 소비 경로가 결정되며, 이를 통해 거시경제학의 핵심 수식인 **오일러방정식(Euler Equation)** 이 도출.
+
+---
+
+## 3. 거시경제학에서의 역할
+
+1.  **미시적 기초 (Microfoundations):** 1970년대 루카스 비판(Lucas Critique) 이후, 경제 주체의 합리적이고 동태적인 최적화 행위를 모델링하는 표준 프레임워크로 자리 잡았습니다.
+2.  **모형의 확장성:** 불확실성(Risk)과 정보의 비대칭성, 이질적 경제 주체(HANK 등)를 다루는 현대 거시-금융 모형의 뼈대가 됩니다.
+3.  **수치 해석적 접근:** 해석적 해(Analytical Solution)를 구하기 어려운 고차원 거시 모형의 경우, 컴퓨터를 이용한 가치 함수 반복법(Value Function Iteration) 등의 수치 해석(Numerical Methods)을 통해 균형을 추정합니다.
+
+---
+
+## 4. 벨만 방정식의 수치적 풀이 (Numerical Methods)
+
+동태 거시경제학에서 벨만 방정식은 해석적 해(Analytical Solution, 손으로 풀어서 나오는 정확한 공식)가 존재하는 경우가 극히 드뭅니다. (예: 로그 효용함수 + 코브-더글라스 생산함수 + 자본 100% 감가상각 등 매우 특수한 가정 하에서만 가능)
+
+따라서 실제 연구와 실무에서는 컴퓨터를 이용한 **수치적 기법(Numerical Methods)**을 통해 근사해(Approximate Solution)를 구합니다. 이 문서는 그 대표적인 방법론들을 정리합니다.
+
+---
+
+# 가치 함수 반복법 (Value Function Iteration, VFI) 상세 알고리즘 및 R 구현
+
+이 문서는 동태 거시경제학의 벨만 방정식을 컴퓨터로 풀기 위한 가장 표준적인 수치 기법인 **가치 함수 반복법(VFI)**의 구체적인 작동 원리와 R 언어 구현 코드를 설명합니다.
+
+---
+
+## 1. VFI 알고리즘 상세 풀이
+
+컴퓨터는 무한대나 연속적인 공간을 이해하지 못합니다. 따라서 VFI의 핵심은 **연속적인 자본 공간을 유한한 바둑판(Grid)으로 쪼개고, 모든 경우의 수를 계산해 가장 높은 가치를 찾는 것**입니다.
+
+### Step 1: 상태 공간 이산화 (Discretization)
+연속적인 자본 $k$를 $N$개의 점으로 쪼갭니다.
+* $K = \lbrace k_1, k_2, \dots, k_N \rbrace$
+* 예: 자본을 0.1부터 10까지 500개의 구간으로 나눕니다.
+
+### Step 2: 수익 행렬 (Return Matrix) 사전 계산
+루프를 돌 때마다 효용을 계산하면 속도가 매우 느립니다. 따라서 **오늘 자본이 $k_i$일 때, 내일 자본을 $k_j$로 선택한다면 오늘 얻게 되는 당장의 효용(Utility)**을 미리 $N \times N$ 행렬로 만들어 둡니다.
+
+* 행(Row) $i$: 오늘 보유한 자본 ($k_t$)
+* 열(Col) $j$: 내일로 넘길 자본 ($k_{t+1}$)
+* 소비 $c_{i,j} = f(k_i) + (1-\delta)k_i - k_j$
+* 수익 행렬 $U_{i,j} = u(c_{i,j})$
+  *(단, 소비가 0 이하가 되는 $j$의 선택은 불가능하므로 $-\infty$의 페널티를 줍니다.)*
+
+### Step 3: 벨만 연산 반복 (The Bellman Operator)
+가치 함수 $V_0$를 0으로 초기화한 뒤, 다음 식을 통해 업데이트합니다.
+$$V_{new}(k_i) = \max_{j} \left\lbrace U_{i,j} + \beta V_{old}(k_j) \right\rbrace$$
+수익 행렬의 각 행(오늘 자본)에서, 어떤 열(내일 자본)을 골라야 **[오늘의 효용 + 내일의 가치]**가 최대가 되는지 찾습니다.
+
+### Step 4: 수렴 확인 (Convergence)
+$V_{new}$와 $V_{old}$의 차이가 미리 정해둔 허용 오차(예: $10^{-6}$)보다 작아지면, 진정한 가치 함수를 찾은 것으로 간주하고 반복을 종료합니다.
+
+---
+
+## 2. R 구현 코드 (벡터화 및 행렬 연산 최적화)
+
+R의 특성상 이중 `for` 문을 피하고 `apply`와 행렬(Matrix) 연산을 활용하면 연산 속도를 비약적으로 높일 수 있습니다.
+```R
+# 1. 파라미터 설정 (Parameters)
+beta <- 0.96      # 할인 인자 (Discount factor)
+alpha <- 0.3      # 자본 소득 분배율 (Capital share)
+delta <- 1.0      # 감가상각률 (100% 감가상각 가정)
+tolerance <- 1e-6 # 수렴 허용 오차
+max_iter <- 1000  # 최대 반복 횟수
+
+# 2. 상태 공간 이산화 (Grid Setup)
+n_grid <- 500
+k_grid <- seq(0.1, 10, length.out = n_grid)
+
+# 3. 수익 행렬 (Return Matrix) 생성
+# 행은 현재 자본(k), 열은 내일 자본(k')
+K_mat <- matrix(k_grid, nrow = n_grid, ncol = n_grid, byrow = FALSE)
+K_prime_mat <- matrix(k_grid, nrow = n_grid, ncol = n_grid, byrow = TRUE)
+
+# 생산함수 y = k^alpha
+# 소비 c = y + (1-delta)*k - k'
+C <- (K_mat^alpha) + (1-delta)*K_mat - K_prime_mat
+
+# 불가능한 경로 (소비가 0 이하) 처리
+C[C <= 0] <- NA 
+
+# 효용 함수 (로그 효용 가정: u(c) = ln(c))
+U <- log(C)
+U[is.na(U)] <- -Inf  # 불가능한 선택지에 무한대 페널티 부여
+
+# 4. 가치 함수 초기화
+V_old <- rep(0, n_grid)
+V_new <- rep(0, n_grid)
+policy_idx <- rep(0, n_grid) # 최적 선택의 인덱스를 저장할 벡터
+
+# 5. VFI 메인 루프
+for (iter in 1:max_iter) {
+  
+  # 내일의 가치를 행렬 형태로 확장 (행렬 연산을 위해)
+  # 기대 가치: beta * V(k')
+  V_expected <- matrix(V_old, nrow = n_grid, ncol = n_grid, byrow = TRUE)
+  
+  # 벨만 방정식 내부의 목적 함수 (Objective Function)
+  Obj <- U + beta * V_expected
+  
+  # 각 행(현재 상태 k_i)에 대해 최댓값을 주는 열(내일 상태 k_j) 탐색
+  V_new <- apply(Obj, 1, max)              # 최댓값 추출 -> 새로운 V
+  policy_idx <- apply(Obj, 1, which.max)   # 최댓값의 위치 추출 -> 정책(Policy)
+  
+  # 수렴 여부 체크 (최대 오차 확인)
+  if (max(abs(V_new - V_old)) < tolerance) {
+    cat(sprintf("성공: %d번째 반복에서 수렴 완료!\n", iter))
+    break
+  }
+  
+  # 가치 함수 업데이트
+  V_old <- V_new
+}
+
+# 6. 최종 결과 추출
+# 가치 함수(Value Function)와 정책 함수(Policy Function, 최적 k')
+final_value_function <- V_new
+optimal_k_prime <- k_grid[policy_idx]
+
+# 간단한 시각화 (선택 사항)
+# plot(k_grid, final_value_function, type='l', main='Value Function', xlab='Capital (k)', ylab='V(k)')
+# plot(k_grid, optimal_k_prime, type='l', main='Policy Function', xlab='Capital (k)', ylab='Optimal Next Capital (k\')')
