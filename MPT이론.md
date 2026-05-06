@@ -49,7 +49,7 @@ $$\sigma_p^2 = \sum_{i=1}^{n} w_i^2 \sigma_i^2 + \sum_{i=1}^{n} \sum_{j \neq i}^
 
 ## 샤프지수(Sharpe Ratio )?
 **위험 1단위당 얻을 수 있는 초과 수익률** 을 의미합니다. 서로 다른 리스크를 가진 포트폴리오들의 성과를 동일한 잣대로 비교(Risk-adjusted Return)할 때 사용되는 가장 대표적인 척도입니다.
-**수식 체계 (Formula)**
+
 
 $$S_p = \frac{E(R_p) - R_f}{\sigma_p}$$
 
