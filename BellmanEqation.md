@@ -1,4 +1,4 @@
-# 벨만 방정식 (Bellman Equation): Dynamic Ecnomics
+# 벨만 방정식 (Bellman Equation): Dynamic Macroeconomics
 
 동태 거시경제학(Dynamic Macroeconomics)에서 **벨만 방정식(Bellman Equation)** 은 무한한 시계(Infinite-Horizon)에 걸친 복잡한 최적화 문제를 '현재(Today)'와 '미래(Tomorrow)'라는 단 두 시점의 재귀적(Recursive) 관계로 압축하는 핵심 수학적 도구다.
 
