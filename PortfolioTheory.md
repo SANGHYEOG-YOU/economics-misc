@@ -16,7 +16,7 @@ $$E(R_p) = \sum_{i=1}^{n} w_i E(R_i)$$
 
 ### 포트폴리오 분산 (Risk)
 $$\sigma_p^2 = \sum_{i=1}^{n} \sum_{j=1}^{n} w_i w_j \sigma_i \sigma_j \rho_{ij}$$
-*(여기서 $$\rho_{ij}$$ 는 자산 $i$ 와 $j$ 의 상관계수)*
+**참고**: $\rho_{ij}$는 자산 $i$와 $j$ 사이의 상관계수를 의미합니다.
 
 ## 3. 최적 포트폴리오 선정
 - **Minimum Variance Portfolio (MVP)**: 리스크를 최소화하는 지점입니다.
