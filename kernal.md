@@ -173,8 +173,8 @@ $$
 |---|---|---|
 | **선형 (Linear)** | $k(u,v) = u^\top v$ | 피처 맵 없이 원본 변수 그대로 내적. **일반 다중 선형회귀(OLS)** 와 동일한 공간 |
 | **다항 (Polynomial)** | $k(u,v) = (\gamma\, u^\top v + c)^d$ | 차수 $d$까지의 변수 간 상호작용. 회귀식에 제곱·세제곱·교차항을 손으로 넣는 것과 **완벽히 동일** |
-| **가우시안 RBF** | $k(u,v) = \exp\!\left(-\dfrac{\|u-v\|^2}{2\sigma^2}\right)$ | 모든 가능한 교차항을 **무한대까지** 반영. 자유도가 폭발 → **과적합(overfitting)되기 가장 쉬움** |
-| **라플라스 (Laplace)** | $k(u,v) = \exp\!\left(-\dfrac{\|u-v\|}{\sigma}\right)$ | RBF의 robust 버전. L1 거리 기반이라 outlier에 덜 민감 |
+| **가우시안 RBF** | $k(u,v) = \exp\left(-\dfrac{\|u-v\|^2}{2\sigma^2}\right)$ | 모든 가능한 교차항을 **무한대까지** 반영. 자유도가 폭발 → **과적합(overfitting)되기 가장 쉬움** |
+| **라플라스 (Laplace)** | $k(u,v) = \exp\left(-\dfrac{\|u-v\|}{\sigma}\right)$ | RBF의 robust 버전. L1 거리 기반이라 outlier에 덜 민감 |
 | **Matérn** | $\nu$로 매끄러움 조절 | 가우시안 프로세스 회귀에서 표준. $\nu \to \infty$면 RBF로 수렴 |
 
 ### Hyperparameter 직관
