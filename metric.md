@@ -100,7 +100,7 @@ $$
 수식으로 정리하면, 모델은 다음을 푼다:
 
 $$
-\hat{f}(x) = \arg\min_{f} \; \mathbb{E}\left[\L(Y, f(X)) \,\right]
+\hat{f}(x) = \arg\min_{f} \; E\left[\, L(Y, f(X)) \,\right]
 $$
 
 이때 $L$의 선택이 곧 $\hat{f}(x)$가 무엇이 될지를 결정한다.
